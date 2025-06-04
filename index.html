@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise LLM Security Testing Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="container">
+                <div class="flex items-center justify-between">
+                    <div class="header-brand">
+                        <h1>🛡️ LLM Security Testing Platform</h1>
+                        <p class="header-subtitle">Enterprise-Grade Prompt Injection & Vulnerability Assessment</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn--secondary btn--sm" id="exportBtn">
+                            📊 Export Report
+                        </button>
+                        <div class="status status--success">
+                            <span id="connectionStatus">Connected</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="dashboard-nav">
+            <div class="container">
+                <div class="nav-tabs">
+                    <button class="nav-tab active" data-tab="overview">📈 Overview</button>
+                    <button class="nav-tab" data-tab="vulnerabilities">🚨 OWASP Top 10</button>
+                    <button class="nav-tab" data-tab="techniques">⚔️ Attack Techniques</button>
+                    <button class="nav-tab" data-tab="tools">🔧 Testing Tools</button>
+                    <button class="nav-tab" data-tab="payloads">💉 Payload Library</button>
+                    <button class="nav-tab" data-tab="scenarios">🏢 Enterprise Scenarios</button>
+                    <button class="nav-tab" data-tab="risk">📊 Risk Assessment</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="container">
+                <!-- Overview Tab -->
+                <div class="tab-content active" id="overview">
+                    <div class="overview-stats">
+                        <div class="stats-grid">
+                            <div class="stat-card card">
+                                <div class="card__body">
+                                    <div class="stat-header">
+                                        <h3>Critical Vulnerabilities</h3>
+                                        <span class="status status--error">High Risk</span>
+                                    </div>
+                                    <div class="stat-value">92%</div>
+                                    <div class="stat-description">Organizations vulnerable to prompt injection</div>
+                                </div>
+                            </div>
+                            <div class="stat-card card">
+                                <div class="card__body">
+                                    <div class="stat-header">
+                                        <h3>Security Tool Adoption</h3>
+                                        <span class="status status--warning">Low Coverage</span>
+                                    </div>
+                                    <div class="stat-value">34%</div>
+                                    <div class="stat-description">Enterprises using LLM security tools</div>
+                                </div>
+                            </div>
+                            <div class="stat-card card">
+                                <div class="card__body">
+                                    <div class="stat-header">
+                                        <h3>Attack Success Rate</h3>
+                                        <span class="status status--error">Critical</span>
+                                    </div>
+                                    <div class="stat-value">85%</div>
+                                    <div class="stat-description">Direct prompt injection attempts</div>
+                                </div>
+                            </div>
+                            <div class="stat-card card">
+                                <div class="card__body">
+                                    <div class="stat-header">
+                                        <h3>GenAI Adoption 2026</h3>
+                                        <span class="status status--info">Growing</span>
+                                    </div>
+                                    <div class="stat-value">80%</div>
+                                    <div class="stat-description">Predicted enterprise adoption</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="overview-charts">
+                        <div class="chart-row">
+                            <div class="chart-container card">
+                                <div class="card__body">
+                                    <h3>Vulnerability Prevalence</h3>
+                                    <div class="chart-wrapper">
+                                        <canvas id="vulnerabilityChart" height="300"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chart-container card">
+                                <div class="card__body">
+                                    <h3>Attack Success Rates</h3>
+                                    <div class="chart-wrapper">
+                                        <canvas id="attackChart" height="300"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quick-actions card">
+                        <div class="card__body">
+                            <h3>Quick Assessment Actions</h3>
+                            <div class="action-grid">
+                                <button class="action-btn btn btn--primary">🔍 Start Vulnerability Scan</button>
+                                <button class="action-btn btn btn--secondary">📋 Generate Testing Checklist</button>
+                                <button class="action-btn btn btn--secondary">💉 Test Payload Library</button>
+                                <button class="action-btn btn btn--secondary">📊 Create Risk Report</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OWASP Top 10 Tab -->
+                <div class="tab-content" id="vulnerabilities">
+                    <div class="section-header">
+                        <h2>OWASP LLM Top 10 Vulnerabilities</h2>
+                        <div class="section-controls">
+                            <input type="text" class="form-control search-input" placeholder="Search vulnerabilities..." id="vulnSearch">
+                            <select class="form-control" id="vulnFilter">
+                                <option value="">All Risk Levels</option>
+                                <option value="Critical">Critical</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="vulnerability-grid" id="vulnerabilityGrid">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Attack Techniques Tab -->
+                <div class="tab-content" id="techniques">
+                    <div class="section-header">
+                        <h2>Attack Techniques & Methodologies</h2>
+                        <div class="section-controls">
+                            <input type="text" class="form-control search-input" placeholder="Search techniques..." id="techniqueSearch">
+                            <select class="form-control" id="techniqueFilter">
+                                <option value="">All Complexity Levels</option>
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="technique-grid" id="techniqueGrid">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Testing Tools Tab -->
+                <div class="tab-content" id="tools">
+                    <div class="section-header">
+                        <h2>Enterprise Security Testing Tools</h2>
+                        <div class="section-controls">
+                            <input type="text" class="form-control search-input" placeholder="Search tools..." id="toolSearch">
+                            <select class="form-control" id="toolFilter">
+                                <option value="">All Categories</option>
+                                <option value="Vulnerability Scanner">Vulnerability Scanner</option>
+                                <option value="Prompt Injection Detector">Prompt Injection Detector</option>
+                                <option value="Red Team Platform">Red Team Platform</option>
+                                <option value="Professional Services">Professional Services</option>
+                                <option value="Security Platform">Security Platform</option>
+                                <option value="AI Testing Platform">AI Testing Platform</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="tools-grid" id="toolsGrid">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Payload Library Tab -->
+                <div class="tab-content" id="payloads">
+                    <div class="section-header">
+                        <h2>Testing Payload Library</h2>
+                        <div class="section-controls">
+                            <input type="text" class="form-control search-input" placeholder="Search payloads..." id="payloadSearch">
+                            <select class="form-control" id="payloadCategory">
+                                <option value="">All Categories</option>
+                                <option value="system_prompt_extraction">System Prompt Extraction</option>
+                                <option value="jailbreaking_prompts">Jailbreaking Prompts</option>
+                                <option value="data_extraction">Data Extraction</option>
+                                <option value="indirect_injection">Indirect Injection</option>
+                                <option value="role_playing">Role Playing</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="payload-categories" id="payloadCategories">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Enterprise Scenarios Tab -->
+                <div class="tab-content" id="scenarios">
+                    <div class="section-header">
+                        <h2>Enterprise Testing Scenarios</h2>
+                        <div class="section-controls">
+                            <input type="text" class="form-control search-input" placeholder="Search scenarios..." id="scenarioSearch">
+                        </div>
+                    </div>
+                    <div class="scenario-grid" id="scenarioGrid">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Risk Assessment Tab -->
+                <div class="tab-content" id="risk">
+                    <div class="section-header">
+                        <h2>Risk Assessment & Compliance</h2>
+                        <div class="section-controls">
+                            <button class="btn btn--primary" id="generateReport">📊 Generate Assessment Report</button>
+                            <button class="btn btn--secondary" id="exportChecklist">📋 Export Testing Checklist</button>
+                        </div>
+                    </div>
+                    
+                    <div class="risk-content">
+                        <div class="risk-overview card">
+                            <div class="card__body">
+                                <h3>Business Impact Assessment</h3>
+                                <div class="risk-grid">
+                                    <div class="risk-item">
+                                        <div class="risk-label">Regulatory Fines</div>
+                                        <div class="risk-level risk-high">High</div>
+                                    </div>
+                                    <div class="risk-item">
+                                        <div class="risk-label">Reputation Damage</div>
+                                        <div class="risk-level risk-high">High</div>
+                                    </div>
+                                    <div class="risk-item">
+                                        <div class="risk-label">Operational Disruption</div>
+                                        <div class="risk-level risk-medium">Medium</div>
+                                    </div>
+                                    <div class="risk-item">
+                                        <div class="risk-label">Customer Trust Loss</div>
+                                        <div class="risk-level risk-critical">Critical</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testing-checklist card">
+                            <div class="card__body">
+                                <h3>Security Testing Checklist</h3>
+                                <div class="checklist-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 0%"></div>
+                                    </div>
+                                    <span class="progress-text">0/12 completed</span>
+                                </div>
+                                <div class="checklist-items" id="checklistItems">
+                                    <!-- Populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for detailed views -->
+    <div class="modal" id="detailModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Details</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content populated by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn--secondary" id="modalCloseBtn">Close</button>
+                <button class="btn btn--primary" id="modalCopyBtn">Copy to Clipboard</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
