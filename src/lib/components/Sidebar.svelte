@@ -41,12 +41,10 @@
 	}
 
 	function handleSettings() {
-		// Placeholder for settings functionality
 		console.log('Settings clicked');
 	}
 
 	function handleSignOut() {
-		// Placeholder for sign out functionality
 		console.log('Sign out clicked');
 	}
 </script>
@@ -97,12 +95,13 @@
 	<nav class="flex-1 space-y-1 p-2">
 		{#each navigation as item}
 			<button
+				type="button"
 				on:click={() => navigateTo(item.href)}
 				class={cn(
-					"w-full flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors text-left",
+					"w-full flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors text-left hover:bg-accent hover:text-accent-foreground",
 					$page.url.pathname === item.href
 						? "bg-primary text-primary-foreground"
-						: "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+						: "text-muted-foreground"
 				)}
 			>
 				<svelte:component this={item.icon} class="h-4 w-4 shrink-0" />
