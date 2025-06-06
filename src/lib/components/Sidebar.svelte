@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 	import { cn } from '$lib/utils';
 	import { Button } from '$lib/components/ui/button';
 	import { Avatar, AvatarImage, AvatarFallback } from '$lib/components/ui/avatar';
@@ -33,6 +34,20 @@
 
 	function toggleSidebar() {
 		collapsed = !collapsed;
+	}
+
+	function navigateTo(href: string) {
+		goto(href);
+	}
+
+	function handleSettings() {
+		// Placeholder for settings functionality
+		console.log('Settings clicked');
+	}
+
+	function handleSignOut() {
+		// Placeholder for sign out functionality
+		console.log('Sign out clicked');
 	}
 </script>
 
@@ -81,10 +96,10 @@
 	<!-- Navigation -->
 	<nav class="flex-1 space-y-1 p-2">
 		{#each navigation as item}
-			<a
-				href={item.href}
+			<button
+				on:click={() => navigateTo(item.href)}
 				class={cn(
-					"flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+					"w-full flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors text-left",
 					$page.url.pathname === item.href
 						? "bg-primary text-primary-foreground"
 						: "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
@@ -94,7 +109,7 @@
 				{#if !collapsed}
 					<span class="ml-3">{item.name}</span>
 				{/if}
-			</a>
+			</button>
 		{/each}
 	</nav>
 
@@ -120,13 +135,23 @@
 
 	<!-- Footer Actions -->
 	<div class="border-t p-2">
-		<Button variant="ghost" size="sm" class={cn("w-full justify-start", collapsed && "px-2")}>
+		<Button 
+			variant="ghost" 
+			size="sm" 
+			class={cn("w-full justify-start", collapsed && "px-2")}
+			on:click={handleSettings}
+		>
 			<Settings class="h-4 w-4" />
 			{#if !collapsed}
 				<span class="ml-3">Settings</span>
 			{/if}
 		</Button>
-		<Button variant="ghost" size="sm" class={cn("w-full justify-start", collapsed && "px-2")}>
+		<Button 
+			variant="ghost" 
+			size="sm" 
+			class={cn("w-full justify-start", collapsed && "px-2")}
+			on:click={handleSignOut}
+		>
 			<LogOut class="h-4 w-4" />
 			{#if !collapsed}
 				<span class="ml-3">Sign Out</span>
