@@ -2,7 +2,7 @@
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
-	import { FileText, Download, CheckCircle } from 'lucide-svelte';
+	import { FileText, Download, CircleCheck as CheckCircle } from 'lucide-svelte';
 
 	let checkedItems = new Set();
 	
