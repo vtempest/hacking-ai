@@ -27,6 +27,5 @@ export {
 	Root,
 	type Props,
 	//
-	Root as Badge,
-	badgeVariants
+	Root as Badge
 };
