@@ -2,7 +2,7 @@
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
-	import { FileText, Download, CircleCheck as CheckCircle } from 'lucide-svelte';
+	import { FileText, Download, Check } from 'lucide-svelte';
 
 	let checkedItems = new Set();
 	
@@ -52,7 +52,7 @@
 		}
 	];
 
-	function toggleCheck(id: number) {
+	function toggleCheck(id) {
 		if (checkedItems.has(id)) {
 			checkedItems.delete(id);
 		} else {
@@ -64,7 +64,7 @@
 	$: completedCount = checkedItems.size;
 	$: progressPercentage = (completedCount / checklistItems.length) * 100;
 
-	function getPriorityColor(priority: string) {
+	function getPriorityColor(priority) {
 		switch (priority) {
 			case 'Critical': return 'destructive';
 			case 'High': return 'outline';
@@ -141,7 +141,7 @@
 							on:click={() => toggleCheck(item.id)}
 						>
 							{#if checkedItems.has(item.id)}
-								<CheckCircle class="h-3 w-3" />
+								<Check class="h-3 w-3" />
 							{/if}
 						</button>
 						<div class="flex-1 min-w-0">

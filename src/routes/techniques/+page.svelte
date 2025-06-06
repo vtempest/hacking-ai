@@ -14,7 +14,7 @@
 		return matchesSearch && matchesComplexity;
 	});
 
-	function getComplexityColor(complexity: string) {
+	function getComplexityColor(complexity) {
 		switch (complexity) {
 			case 'Low': return 'secondary';
 			case 'Medium': return 'outline';

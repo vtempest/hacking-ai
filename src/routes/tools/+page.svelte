@@ -14,7 +14,7 @@
 		return matchesSearch && matchesCategory;
 	});
 
-	function renderStars(readiness: number) {
+	function renderStars(readiness) {
 		return Array.from({ length: 5 }, (_, i) => i < readiness);
 	}
 </script>

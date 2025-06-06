@@ -77,9 +77,22 @@
 		return matchesSearch && matchesCategory;
 	});
 
-	function copyToClipboard(text: string) {
-		navigator.clipboard.writeText(text);
-		// You could add a toast notification here
+	function copyToClipboard(text) {
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(text).then(() => {
+				console.log('Copied to clipboard');
+			}).catch(err => {
+				console.error('Failed to copy: ', err);
+			});
+		} else {
+			// Fallback for older browsers
+			const textArea = document.createElement('textarea');
+			textArea.value = text;
+			document.body.appendChild(textArea);
+			textArea.select();
+			document.execCommand('copy');
+			document.body.removeChild(textArea);
+		}
 	}
 </script>
 
