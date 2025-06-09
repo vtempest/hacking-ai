@@ -1,0 +1,192 @@
+const vulnerabilities = [
+  {
+    id: "LLM01",
+    title: "Prompt Injection",
+    description: "Manipulating LLM via crafted inputs, leading to unauthorized access, data breaches, or unintended actions.",
+    riskLevel: "Critical",
+    prevalence: 92,
+    attackSuccess: 85,
+    category: "Input Manipulation"
+  },
+  {
+    id: "LLM02",
+    title: "Insecure Output Handling",
+    description: "Insufficient validation of LLM outputs before passing to downstream systems.",
+    riskLevel: "High",
+    prevalence: 78,
+    attackSuccess: 72,
+    category: "Output Processing"
+  },
+  {
+    id: "LLM03",
+    title: "Training Data Poisoning",
+    description: "Manipulating training data to introduce vulnerabilities or backdoors.",
+    riskLevel: "High",
+    prevalence: 65,
+    attackSuccess: 68,
+    category: "Data Integrity"
+  },
+  {
+    id: "LLM04",
+    title: "Model Denial of Service",
+    description: "Causing resource exhaustion through expensive operations or high-volume requests.",
+    riskLevel: "Medium",
+    prevalence: 58,
+    attackSuccess: 45,
+    category: "Availability"
+  },
+  {
+    id: "LLM05",
+    title: "Supply Chain Vulnerabilities",
+    description: "Compromised components, training data, or pre-trained models.",
+    riskLevel: "High",
+    prevalence: 71,
+    attackSuccess: 63,
+    category: "Supply Chain"
+  },
+  {
+    id: "LLM06",
+    title: "Sensitive Information Disclosure",
+    description: "Unintentional revelation of confidential data through LLM outputs.",
+    riskLevel: "Critical",
+    prevalence: 89,
+    attackSuccess: 79,
+    category: "Data Leakage"
+  }
+];
+const attackTechniques = [
+  {
+    id: "AT001",
+    name: "Direct Prompt Injection",
+    description: "Directly manipulating prompts to override system instructions.",
+    complexity: "Low",
+    successRate: 85,
+    category: "Prompt Manipulation"
+  },
+  {
+    id: "AT002",
+    name: "Indirect Prompt Injection",
+    description: "Injecting malicious content through external data sources.",
+    complexity: "Medium",
+    successRate: 72,
+    category: "Prompt Manipulation"
+  },
+  {
+    id: "AT003",
+    name: "Jailbreaking",
+    description: "Bypassing safety measures and content filters.",
+    complexity: "Medium",
+    successRate: 68,
+    category: "Safety Bypass"
+  },
+  {
+    id: "AT004",
+    name: "Role Playing Attack",
+    description: "Convincing the model to adopt harmful personas.",
+    complexity: "Low",
+    successRate: 76,
+    category: "Social Engineering"
+  },
+  {
+    id: "AT005",
+    name: "System Prompt Extraction",
+    description: "Attempting to reveal hidden system instructions.",
+    complexity: "High",
+    successRate: 54,
+    category: "Information Extraction"
+  }
+];
+const securityTools = [
+  {
+    id: "ST001",
+    name: "Garak",
+    description: "LLM vulnerability scanner for automated security testing.",
+    category: "Vulnerability Scanner",
+    type: "Open Source",
+    readiness: 4,
+    vendor: "NVIDIA"
+  },
+  {
+    id: "ST002",
+    name: "PromptFoo",
+    description: "Test harness for LLM applications with security focus.",
+    category: "Testing Framework",
+    type: "Open Source",
+    readiness: 3,
+    vendor: "Community"
+  },
+  {
+    id: "ST003",
+    name: "Lakera Guard",
+    description: "Real-time prompt injection detection and prevention.",
+    category: "Security Platform",
+    type: "Commercial",
+    readiness: 5,
+    vendor: "Lakera"
+  },
+  {
+    id: "ST004",
+    name: "Microsoft PyRIT",
+    description: "Python Risk Identification Tool for generative AI.",
+    category: "Red Team Platform",
+    type: "Open Source",
+    readiness: 4,
+    vendor: "Microsoft"
+  },
+  {
+    id: "ST005",
+    name: "Robust Intelligence",
+    description: "AI security platform for model validation and monitoring.",
+    category: "AI Testing Platform",
+    type: "Commercial",
+    readiness: 4,
+    vendor: "Robust Intelligence"
+  }
+];
+const testingScenarios = [
+  {
+    id: "TS001",
+    title: "Customer Service Chatbot Compromise",
+    description: "Testing prompt injection vulnerabilities in customer-facing chatbots.",
+    context: "E-commerce platform with AI-powered customer support",
+    riskTags: ["Data Breach", "Customer Trust", "Regulatory Compliance"],
+    industry: "E-commerce"
+  },
+  {
+    id: "TS002",
+    title: "Financial Advisory AI Manipulation",
+    description: "Attempting to manipulate AI financial advisors to provide harmful advice.",
+    context: "Investment platform using LLM for financial recommendations",
+    riskTags: ["Financial Loss", "Regulatory Fines", "Reputation Damage"],
+    industry: "Financial Services"
+  },
+  {
+    id: "TS003",
+    title: "Healthcare AI Misinformation",
+    description: "Testing medical AI systems for susceptibility to harmful health advice.",
+    context: "Telemedicine platform with AI-assisted diagnosis",
+    riskTags: ["Patient Safety", "Medical Malpractice", "Regulatory Action"],
+    industry: "Healthcare"
+  },
+  {
+    id: "TS004",
+    title: "Code Generation Security Bypass",
+    description: "Evaluating AI code assistants for generation of vulnerable code.",
+    context: "Developer tools with AI-powered code completion",
+    riskTags: ["Security Vulnerabilities", "Supply Chain Risk", "IP Theft"],
+    industry: "Technology"
+  }
+];
+const dashboardStats = {
+  criticalVulnerabilities: 92,
+  securityToolAdoption: 34,
+  attackSuccessRate: 85,
+  genAiAdoption2026: 80
+};
+export {
+  attackTechniques as a,
+  dashboardStats as d,
+  securityTools as s,
+  testingScenarios as t,
+  vulnerabilities as v
+};
